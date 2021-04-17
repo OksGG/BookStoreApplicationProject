@@ -4,6 +4,8 @@ import com.codeborne.selenide.Selenide;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.java.Log;
 
+import org.junit.After;
+import org.junit.jupiter.api.AfterAll;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -53,12 +55,12 @@ element.click();
             executor.executeScript("arguments[0].click();", element);
         }
     }
-
+@AfterAll
     public void selenideClose() {
         Selenide.closeWindow();
 
     }
-
+@AfterAll
     public void closeDriver() {
         driver.quit();
     }
