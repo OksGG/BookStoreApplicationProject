@@ -4,8 +4,6 @@ import com.codeborne.selenide.Selenide;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.java.Log;
 
-import org.junit.After;
-import org.junit.jupiter.api.AfterAll;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,9 +19,6 @@ import java.util.concurrent.TimeUnit;
 public class BasePage {
     public static WebDriver driver;
     public static Properties prop;
-public static String driverPath;
-    public static String driverCommonPath = "src/test/resources/driver/";
-    public static String driverChrome ="chromedriver.exe";
     public BasePage() {
         try {
             prop = new Properties();
@@ -48,19 +43,19 @@ public static String driverPath;
     }
 
     public void executor(WebElement element){
-        try { driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        try {
 element.click();
         } catch (Exception e) {
             JavascriptExecutor executor = (JavascriptExecutor) driver;
             executor.executeScript("arguments[0].click();", element);
         }
     }
-@AfterAll
+
     public void selenideClose() {
         Selenide.closeWindow();
 
     }
-@AfterAll
+
     public void closeDriver() {
         driver.quit();
     }
