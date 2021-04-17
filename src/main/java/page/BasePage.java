@@ -31,7 +31,7 @@ public class BasePage {
     public static void initialization() {
         String browserName = prop.getProperty("browser");
         if (browserName.equals("chrome")) {
-            System.setProperty("webdriver.chrome.driver", "src/test/resources/driver/chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", ("user.dir") + "/src/test/resources/chromedriver");
             driver = new ChromeDriver();
         }
         driver.manage().window().maximize();
