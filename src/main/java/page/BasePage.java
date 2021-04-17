@@ -1,6 +1,7 @@
 package page;
 
 import com.codeborne.selenide.Selenide;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.java.Log;
 
 import org.openqa.selenium.JavascriptExecutor;
@@ -18,7 +19,9 @@ import java.util.concurrent.TimeUnit;
 public class BasePage {
     public static WebDriver driver;
     public static Properties prop;
-
+public static String driverPath;
+    public static String driverCommonPath = "src/test/resources/driver/";
+    public static String driverChrome ="chromedriver.exe";
     public BasePage() {
         try {
             prop = new Properties();
@@ -30,12 +33,9 @@ public class BasePage {
     }
 
     public static void initialization() {
-        String browserName = prop.getProperty("browser");
-        if (browserName.equals("chrome")) {
-            System.setProperty("webdriver.chrome.driver", "src/test/resources/driver/chromedriver.exe");
+        WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
-        }
-        driver.manage().window().maximize();
+            driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         driver.get(prop.getProperty("url"));
     }
@@ -46,7 +46,7 @@ public class BasePage {
     }
 
     public void executor(WebElement element){
-        try {
+        try { driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 element.click();
         } catch (Exception e) {
             JavascriptExecutor executor = (JavascriptExecutor) driver;
