@@ -4,7 +4,6 @@ import lombok.extern.java.Log;
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -13,8 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -37,7 +36,7 @@ public class BooksPage extends BasePage {
     WebElement clickOk;
 
     @FindBy(xpath = "//*[@id=\"login\"]")
-     WebElement login;
+    WebElement login;
 
     @FindBy(xpath = "//*[@id=\"userName\"]")
     WebElement user;
@@ -51,20 +50,18 @@ public class BooksPage extends BasePage {
     List<String> listTitle;
     List<String> title = Arrays.asList("Git Pocket Guide", "Learning JavaScript Design Patterns", "Designing Evolvable Web APIs with ASP.NET", "Speaking JavaScript", "You Don't Know JS", "Programming JavaScript Applications", "Eloquent JavaScript", "Second Edition", "Understanding ECMAScript 6");
     WebDriverWait wait;
-    public  BooksPage() {
+
+    public BooksPage() {
         PageFactory.initElements(driver, this);
     }
-    public void login(){
+
+    public void login() {
         login.click();
         user.sendKeys("Linet");
         password.sendKeys("Test_123%");
-        try {
-           click.click();
-        } catch (Exception e) {
-            JavascriptExecutor executor = (JavascriptExecutor) driver;
-            executor.executeScript("arguments[0].click();", click);
-        }
+        executor(click);
     }
+
     public void loginCheck() {
         String text = driver.findElement(By.xpath("//*[@id=\"login\"]")).getText();
         log.info(text);
@@ -84,7 +81,7 @@ public class BooksPage extends BasePage {
     }
 
     public void accept() {
-       wait= new WebDriverWait(driver, 3000);
+        wait = new WebDriverWait(driver, 3000);
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
         alert.accept();
@@ -101,10 +98,12 @@ public class BooksPage extends BasePage {
     }
 
     public void deleteBook() {
-        log.info("Удаляем книгу");
-       clickDelete.click();
-       log.info("Книга удалена, нажимаем Ок");
-        executor(clickOk);log.info("Ок нажата");
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.visibilityOf(clickDelete));
+        clickDelete.click();
+
+        executor(clickOk);
+        log.info("Ок нажата");
         accept();
         String title = driver.findElement(By.className("rt-noData")).getText();
         log.info(title);
