@@ -101,8 +101,10 @@ public class BooksPage extends BasePage {
     }
 
     public void deleteBook() {
+        log.info("Удаляем книгу");
        clickDelete.click();
-        executor(clickOk);
+       log.info("Книга удалена, нажимаем Ок");
+        executor(clickOk);log.info("Ок нажата");
         accept();
         String title = driver.findElement(By.className("rt-noData")).getText();
         log.info(title);
