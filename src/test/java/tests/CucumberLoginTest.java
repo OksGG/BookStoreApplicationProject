@@ -5,6 +5,7 @@ import cucumber.api.java.en.Given;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Test;
@@ -14,8 +15,8 @@ import java.net.MalformedURLException;
 
 public class CucumberLoginTest extends LoginPage {
     LoginPage loginPage;
-    @Test
-    @DisplayName("Human-readable test name")
+
+    @Step("Human-readable test name")
     @Given("Open page")
     public void open() throws MalformedURLException {
         selenideOpen();
