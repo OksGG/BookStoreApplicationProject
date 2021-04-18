@@ -89,7 +89,7 @@ public class BooksPage extends BasePage {
     }
 
     public void addBook() {
-        action(chooseBook);
+        executor(chooseBook);
         executor(addBook);
         accept();
         executor(goToProfile);
@@ -99,7 +99,8 @@ public class BooksPage extends BasePage {
     }
 
     public void deleteBook() {
-        executor(clickDelete);
+        clickDelete = new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(clickDelete));
+        clickDelete.click();
        executor(clickOk);
         log.info("Ок нажата");
         accept();

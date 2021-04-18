@@ -54,12 +54,6 @@ element.click();
             executor.executeScript("arguments[0].click();", element);
         }
     }
-    public void action (WebElement element){
-        Actions action = new Actions(driver);
-        element = new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(element));
-        if (element.isDisplayed() && element.isEnabled())
-        action.moveToElement(element).click().build().perform();
-    }
 
     public void selenideClose() {
         Selenide.closeWindow();
