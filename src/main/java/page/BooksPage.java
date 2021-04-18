@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -29,7 +30,7 @@ public class BooksPage extends BasePage {
     @FindBy(xpath = "//*[contains(text(),'Profile')]")
     WebElement goToProfile;
 
-    @FindBy(css = "#delete-record-undefined > svg > path")
+    @FindBy(xpath = "#delete-record-undefined > svg > path")
     WebElement clickDelete;
 
     @FindBy(xpath = "//*[@id=\"closeSmallModal-ok\"]")
@@ -88,7 +89,7 @@ public class BooksPage extends BasePage {
     }
 
     public void addBook() {
-        chooseBook.click();
+        executor(chooseBook);
         executor(addBook);
         accept();
         executor(goToProfile);
@@ -98,11 +99,13 @@ public class BooksPage extends BasePage {
     }
 
     public void deleteBook() {
-        WebDriverWait wait = new WebDriverWait(driver, 5);
-        wait.until(ExpectedConditions.visibilityOf(clickDelete));
-        clickDelete.click();
 
-        executor(clickOk);
+        WebElement element = driver.findElement(By.cssSelector("4#delete-record-undefined > svg > path"));
+        if (element.isDisplayed() && element.isEnabled()) {
+            element.click();
+        }
+
+       executor(clickOk);
         log.info("Ок нажата");
         accept();
         String title = driver.findElement(By.className("rt-noData")).getText();

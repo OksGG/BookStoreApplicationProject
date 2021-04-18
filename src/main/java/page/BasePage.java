@@ -47,9 +47,10 @@ public class BasePage {
 element.click();
         } catch (Exception e) {
             JavascriptExecutor executor = (JavascriptExecutor) driver;
-            executor.executeScript("arguments[0].click();", element);
+            executor.executeScript("arguments[0].click()", element);
         }
     }
+
 
     public void selenideClose() {
         Selenide.closeWindow();
