@@ -30,7 +30,7 @@ public class BooksPage extends BasePage {
     @FindBy(xpath = "//*[contains(text(),'Profile')]")
     WebElement goToProfile;
 
-    @FindBy(xpath = "#delete-record-undefined > svg > path")
+    @FindBy(css = "#delete-record-undefined > svg > path")
     WebElement clickDelete;
 
     @FindBy(xpath = "//*[@id=\"closeSmallModal-ok\"]")
@@ -89,7 +89,7 @@ public class BooksPage extends BasePage {
     }
 
     public void addBook() {
-        executor(chooseBook);
+        action(chooseBook);
         executor(addBook);
         accept();
         executor(goToProfile);
@@ -99,12 +99,7 @@ public class BooksPage extends BasePage {
     }
 
     public void deleteBook() {
-
-        WebElement element = driver.findElement(By.cssSelector("4#delete-record-undefined > svg > path"));
-        if (element.isDisplayed() && element.isEnabled()) {
-            element.click();
-        }
-
+        executor(clickDelete);
        executor(clickOk);
         log.info("Ок нажата");
         accept();

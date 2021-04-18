@@ -4,10 +4,14 @@ import com.codeborne.selenide.Selenide;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.java.Log;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -47,10 +51,15 @@ public class BasePage {
 element.click();
         } catch (Exception e) {
             JavascriptExecutor executor = (JavascriptExecutor) driver;
-            executor.executeScript("arguments[0].click()", element);
+            executor.executeScript("arguments[0].click();", element);
         }
     }
-
+    public void action (WebElement element){
+        Actions action = new Actions(driver);
+        element = new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(element));
+        if (element.isDisplayed() && element.isEnabled())
+        action.moveToElement(element).click().build().perform();
+    }
 
     public void selenideClose() {
         Selenide.closeWindow();
