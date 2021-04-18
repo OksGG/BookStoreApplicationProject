@@ -18,7 +18,7 @@ public class LoginPage extends BasePage {
     final By loginClick = cssSelector("#login");
     final By name = xpath("//*[@id=\"userName-value\"]");
     final By textError = xpath("//*[@id=\"name\"]");
-    final String loginName = "Linet";
+    final String loginName = "Test1";
     final String errorText = "Invalid username or password!";
 
 
@@ -27,8 +27,8 @@ public class LoginPage extends BasePage {
     }
 
 
-    public void input(String user, String pass) {
-        $(user).sendKeys(user);
+    public void input(String userName, String pass) {
+        $(user).sendKeys(userName);
         $(password).sendKeys(pass);
         try {
             $(loginClick).click();
