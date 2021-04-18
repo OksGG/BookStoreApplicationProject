@@ -5,6 +5,7 @@ import cucumber.api.java.en.Given;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
@@ -23,12 +24,12 @@ public class CucumberLoginTest extends LoginPage {
         loginPage = new LoginPage();
         loginPage.clickLogin();
     }
-
+    @DisplayName("Human-readable test namfe")
     @When("Data input correct")
     public void login() {
         loginPage.input("Test1", "Test_123%");
     }
-
+    @Attachment("Human-readagfgble test namfe")
     @When("Data input incorrect")
     public void loginError() {
         loginPage.input("Test1", "Test_1");
