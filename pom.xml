@@ -19,7 +19,18 @@
             <artifactId>selenide</artifactId>
             <version>5.19.0</version>
         </dependency>
-
+        <dependency>
+            <!--содержит аннотацию Step-->
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-java-commons</artifactId>
+            <version>2.13.9</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.qameta.allure</groupId>
+                    <artifactId>allure-java-commons</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-selenide</artifactId>
