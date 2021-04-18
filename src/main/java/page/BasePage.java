@@ -51,6 +51,13 @@ public class BasePage {
     }
 
     public BasePage selenideOpen() {
+        Configuration.remote="http://188.130.155.80:4444/";
+        Configuration.browser = "chrome";
+        Configuration.browserSize = "1920";
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("EnableVideo", true);
+        Configuration.browserCapabilities =capabilities;
+        WebDriverManager.chromedriver().setup();
         Selenide.open (prop.getProperty("url"));
         return this;
     }
