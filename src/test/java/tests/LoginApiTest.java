@@ -42,7 +42,7 @@ public class LoginApiTest {
         request.body(requestBody.toString());
     }
 
-    @Then("Проверяем, что залогинились, код 200")
+    @Then("Успешный вход - код 200")
     public void apiLogin() {
         response = request.post(url);
         statusCode = response.getStatusCode();

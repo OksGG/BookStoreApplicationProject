@@ -2,7 +2,7 @@ Feature: BooksTest
 
   Scenario: ViewBooksList
     Given Открываем страницу с книгами
-    When Проверяем, что залогинились
+    When Проверяем, что не залогинены
     Then Проверяем список книг
     And Закрываем окно браузера
 
