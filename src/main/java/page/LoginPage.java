@@ -23,6 +23,7 @@ public class LoginPage extends BasePage {
 
     public void clickLogin() {
         $(login).click();
+        screenshot();
     }
 
     public void inputCorrect() {
@@ -30,6 +31,7 @@ public class LoginPage extends BasePage {
         $(password).sendKeys("Test_123%");
         try {
             $(loginClick).click();
+            screenshot();
         } catch (Exception e) {
            JavascriptExecutor executor = (JavascriptExecutor) driver;
             executor.executeScript("arguments[0].click();", loginClick);
@@ -41,6 +43,7 @@ public class LoginPage extends BasePage {
         $(password).sendKeys("1234");
         try {
             $(loginClick).click();
+            screenshot();
         } catch (Exception e) {
             JavascriptExecutor executor = (JavascriptExecutor) driver;
             executor.executeScript("arguments[0].click();", loginClick);
@@ -50,12 +53,14 @@ public class LoginPage extends BasePage {
     public void check() {
         String text = $(name).getText();
         log.info(text);
+        screenshot();
         Assert.assertTrue(text.contains(loginName));
     }
 
     public void checkError() {
         String text =$(textError).getText();
         log.info(text);
+        screenshot();
         Assert.assertTrue(text.contains(errorText));
     }
 

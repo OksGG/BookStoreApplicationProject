@@ -41,6 +41,7 @@ public class BooksApiTest {
         String responseBody = response.asString();
         log.info(responseBody);
 
+
     }
 
     @When("Response")

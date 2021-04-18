@@ -59,7 +59,9 @@ public class BooksPage extends BasePage {
         login.click();
         user.sendKeys("Linet");
         password.sendKeys("Test_123%");
+        screenshot();
         executor(click);
+        screenshot();
     }
 
     public void loginCheck() {
@@ -76,6 +78,7 @@ public class BooksPage extends BasePage {
 
     public void checkListBooks() {
         listTitle = getListOfTitle();
+        screenshot();
         log.info(String.valueOf(listTitle));
         assertThat(String.valueOf(listTitle)).isEqualTo(String.valueOf(title));
     }
@@ -89,11 +92,15 @@ public class BooksPage extends BasePage {
 
     public void addBook() {
         executor(chooseBook);
+        screenshot();
         executor(addBook);
+        screenshot();
         accept();
         executor(goToProfile);
+        screenshot();
         String bookText = driver.findElement(By.className("mr-2")).getText();
         log.info(bookText);
+        screenshot();
         assertThat(bookText.equals("Git Pocket Guide"));
     }
 
@@ -103,6 +110,7 @@ public class BooksPage extends BasePage {
        executor(clickOk);
         log.info("Ок нажата");
         accept();
+        screenshot();
         String title = driver.findElement(By.className("rt-noData")).getText();
         log.info(title);
         assertThat(title.equals("No rows found"));
