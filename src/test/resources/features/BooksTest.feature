@@ -1,13 +1,13 @@
 Feature: BooksTest
 
   Scenario: ViewBooksList
-    Given Open Book page
-    When Check logout
-    Then Check list books
-    And  Close browser
+    Given Открываем страницу с книгами
+    When Проверяем, что залогинились
+    Then Проверяем список книг
+    And Закрываем окно браузера
 
   Scenario: AddDeleteBook
-    Given Open Book page
-    When Login
-    Then Add and delete book
-    And  Close browser
+    Given Открываем страницу с книгами
+    When Логинимся
+    Then Добавляем и удаляем книгу
+    And  Закрываем окно браузера

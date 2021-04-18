@@ -5,11 +5,8 @@ import cucumber.api.java.en.Given;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import io.qameta.allure.Attachment;
-import io.qameta.allure.Step;
-import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
-import org.junit.Test;
+
 import page.LoginPage;
 
 import java.net.MalformedURLException;
@@ -17,38 +14,37 @@ import java.net.MalformedURLException;
 public class CucumberLoginTest extends LoginPage {
     LoginPage loginPage;
 
-    @Step("Human-readable test name")
-    @Given("Open page")
+    @Given("^Открываем страницу$")
     public void open() throws MalformedURLException {
         selenideOpen();
         loginPage = new LoginPage();
         loginPage.clickLogin();
     }
-    @DisplayName("Human-readable test namfe")
-    @When("Data input correct")
+
+    @When("Вводим корректные логин и пароль")
     public void login() {
         loginPage.input("Test1", "Test_123%");
     }
-    @Attachment("Human-readagfgble test namfe")
-    @When("Data input incorrect")
+
+    @When("Вводим некорректные логин и пароль")
     public void loginError() {
         loginPage.input("Test1", "Test_1");
     }
 
-    @Then("Get success")
+    @Then("Проверяем, что залогинились")
     public void getLoginSuccess() {
         loginPage.check();
 
     }
 
-    @Then("Get login error")
+    @Then("Получаем ошибку при входе")
     public void getLoginError() {
         loginPage.checkError();
 
     }
 
     @After
-    @And("Browser close")
+    @And("Закрываем браузер")
     public void close() {
         selenideClose();
     }

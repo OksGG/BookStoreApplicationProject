@@ -19,12 +19,12 @@ public class LoginApiTest {
     RequestSpecification request;
     String url = "https://demoqa.com/Account/v1/Authorized";
 
-    @Given("Url open")
+    @Given("Входим на страницу Login")
     public void apiUrlOpen() {
         request = RestAssured.given();
     }
 
-    @When("Success request parameters")
+    @When("Передаем параметры для успешного входа")
     public void successParameters() {
         request.header("Content-Type", "application/json");
         JSONObject requestBody = new JSONObject();
@@ -33,7 +33,7 @@ public class LoginApiTest {
         request.body(requestBody.toString());
     }
 
-    @When("Error request parameters")
+    @When("Передаем некорректные параметры")
     public void errorParameters() {
         request.header("Content-Type", "application/json");
         requestBody = new JSONObject();
@@ -42,14 +42,14 @@ public class LoginApiTest {
         request.body(requestBody.toString());
     }
 
-    @Then("Success api test")
+    @Then("Проверяем, что залогинились, код 200")
     public void apiLogin() {
         response = request.post(url);
         statusCode = response.getStatusCode();
         Assert.assertEquals(statusCode, 200);
     }
 
-    @Then("Error api test")
+    @Then("Получаем ошибку 404")
     public void apiLoginError() {
         response = request.post(url);
         statusCode = response.getStatusCode();

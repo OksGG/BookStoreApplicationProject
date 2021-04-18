@@ -1,6 +1,5 @@
 package page;
 
-import io.qameta.allure.Allure;
 import lombok.extern.java.Log;
 import org.junit.Assert;
 import org.openqa.selenium.Alert;

@@ -1,13 +1,13 @@
 Feature: LoginApiTest
 
   Scenario: LoginApiSuccess
-    Given Url open
-    When Success request parameters
-    Then Success api test
+    Given Входим на страницу Login
+    When Передаем параметры для успешного входа
+    Then Проверяем, что залогинились, код 200
 
 
   Scenario: LoginApiError
-    Given Url open
-    When Error request parameters
-    Then Error api test
+    Given Входим на страницу Login
+    When Передаем некорректные параметры
+    Then Получаем ошибку 404
 

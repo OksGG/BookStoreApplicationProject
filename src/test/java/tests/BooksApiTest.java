@@ -9,6 +9,7 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import lombok.extern.java.Log;
 import org.junit.Assert;
+
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.CoreMatchers.equalTo;
 
@@ -35,7 +36,7 @@ public class BooksApiTest {
 
     String isbn = "?ISBN=9781449337711";
 
-    @Given("Open url")
+    @Given("Открываем страницу Books")
     public void openUrl() {
         response = get(url);
         String responseBody = response.asString();
@@ -44,13 +45,13 @@ public class BooksApiTest {
 
     }
 
-    @When("Response")
+    @When("Проверяем, что список книг доступен без логина")
     public void responseStart() {
         responseBody = response.asString();
         log.info(responseBody);
     }
 
-    @Then("Assert")
+    @Then("Успешное получение списка книг")
     public void checkAssert() {
         JsonPath path = new JsonPath(responseBody);
         String key = path.getString("books[0].title");
@@ -58,7 +59,7 @@ public class BooksApiTest {
         Assert.assertEquals(key, "Git Pocket Guide");
     }
 
-    @Given("Add book")
+    @Given("Добавляем книгу")
     public void addBook() {
         given().auth().preemptive().basic("Test1", "Test_123%")
                 .body(jsonBodyAdd)
@@ -69,7 +70,7 @@ public class BooksApiTest {
                 .statusCode(201);
     }
 
-    @When("Open profile")
+    @When("Открываем свой профиль и проверяем, что добавленная книга там есть")
     public void checkBookInProfile() {
         RestAssured.given().when()
                 .get(urlSingleBook + isbn)
@@ -77,7 +78,7 @@ public class BooksApiTest {
                 .body("isbn", equalTo("9781449337711"));
     }
 
-    @Then("Delete book")
+    @Then("Успешно удаляем книгу")
     public void deleteApiBook() {
         RestAssured.given().auth().preemptive().basic("Test1", "Test_123%")
                 .body(jsonBodyDel)

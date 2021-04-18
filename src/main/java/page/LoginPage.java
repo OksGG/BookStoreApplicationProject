@@ -1,8 +1,5 @@
 package page;
 
-import io.qameta.allure.Allure;
-import io.qameta.allure.Attachment;
-import io.qameta.allure.Step;
 import lombok.extern.java.Log;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -23,7 +20,7 @@ public class LoginPage extends BasePage {
     final By textError = xpath("//*[@id=\"name\"]");
     final String loginName = "Test1";
     final String errorText = "Invalid username or password!";
-@Step("jkj")
+
     public void clickLogin() {
         $(login).click();
     }

@@ -1,13 +1,13 @@
 Feature: LoginTest
 
   Scenario: LoginSuccess
-    Given Open page
-    When Data input correct
-    Then Get success
-    And  Browser close
+    Given Открываем страницу
+    When Вводим корректные логин и пароль
+    Then Проверяем, что залогинились
+    And  Закрываем браузер
 
   Scenario: LoginError
-    Given Open page
-    When Data input incorrect
-    Then Get login error
-    And  Browser close
+    Given Открываем страницу
+    When Вводим некорректные логин и пароль
+    Then Получаем ошибку при входе
+    And  Закрываем браузер

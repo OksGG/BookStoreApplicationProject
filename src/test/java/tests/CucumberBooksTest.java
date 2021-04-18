@@ -4,7 +4,6 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.junit.AfterClass;
 import page.BooksPage;
 
 import java.net.MalformedURLException;
@@ -14,35 +13,34 @@ public class CucumberBooksTest extends BooksPage {
     BooksPage booksPage;
 
 
-    @Given("Open Book page")
+    @Given("Открываем страницу с книгами")
     public void open() throws MalformedURLException {
         initialization();
         booksPage = new BooksPage();
     }
 
-    @When("Check logout")
+    @When("Проверяем, что не залогинены")
     public void checkLoginOut() {
         booksPage.loginCheck();
     }
 
-    @When("Login")
+    @When("Логинимся")
     public void loginInPage() {
         booksPage.login();
     }
 
-    @Then("Check list books")
+    @Then("Проверяем список книг")
     public void getListBook() {
         booksPage.checkListBooks();
     }
 
-    @Then("Add and delete book")
+    @Then("Добавляем и удаляем книгу")
     public void addDeleteBook() {
         booksPage.addBook();
         booksPage.deleteBook();
     }
 
-    @AfterClass
-    @And("Close browser")
+    @And("Закрываем окно браузера")
     public void closeBrowser() {
         closeDriver();
     }
