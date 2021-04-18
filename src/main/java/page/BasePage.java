@@ -1,15 +1,18 @@
 package page;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.java.Log;
 
+import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -34,11 +37,17 @@ public class BasePage {
     }
 
     public static void initialization() {
+        Configuration.remote="http://188.130.155.80:4444/";
+        Configuration.browser = "chrome";
+        Configuration.browserSize = "1920";
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("EnableVideo", true);
+        Configuration.browserCapabilities =capabilities;
         WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-            driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        driver.get(prop.getProperty("url"));
+          //  driver = new ChromeDriver();
+          //  driver.manage().window().maximize();
+       // driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+      //  driver.get(prop.getProperty("url"));
     }
 
     public BasePage selenideOpen() {
