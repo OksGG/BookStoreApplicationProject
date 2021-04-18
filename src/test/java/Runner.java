@@ -1,4 +1,5 @@
 import cucumber.api.CucumberOptions;
+import cucumber.api.SnippetType;
 import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
 
@@ -6,6 +7,8 @@ import org.junit.runner.RunWith;
 
 @CucumberOptions(features = {"classpath:features"},
         glue = {"classpath:tests"},
+        tags = "@withdrawal",
+        snippets = SnippetType.CAMELCASE,
         plugin = "pretty"
 )
 public class Runner {
