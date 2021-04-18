@@ -8,11 +8,13 @@ import cucumber.api.java.en.When;
 import org.junit.After;
 import page.LoginPage;
 
+import java.net.MalformedURLException;
+
 public class CucumberLoginTest extends LoginPage {
     LoginPage loginPage;
 
     @Given("Open page")
-    public void open() {
+    public void open() throws MalformedURLException {
         selenideOpen();
         loginPage = new LoginPage();
         loginPage.clickLogin();

@@ -8,13 +8,15 @@ import cucumber.api.java.en.When;
 import org.junit.AfterClass;
 import page.BooksPage;
 
+import java.net.MalformedURLException;
+
 
 public class CucumberBooksTest extends BooksPage {
     BooksPage booksPage;
 
 
     @Given("Open Book page")
-    public void open() {
+    public void open() throws MalformedURLException {
         initialization();
         booksPage = new BooksPage();
     }
