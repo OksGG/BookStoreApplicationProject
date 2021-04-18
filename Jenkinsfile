@@ -10,7 +10,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh 'mvn clean test -Dtest=Runner.java'
+                sh 'mvn clean compile test -Dtest=Runner.java'
             }
         }
     }
