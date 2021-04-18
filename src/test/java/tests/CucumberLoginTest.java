@@ -6,13 +6,16 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.After;
+import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 import page.LoginPage;
 
 import java.net.MalformedURLException;
 
 public class CucumberLoginTest extends LoginPage {
     LoginPage loginPage;
-
+    @Test
+    @DisplayName("Human-readable test name")
     @Given("Open page")
     public void open() throws MalformedURLException {
         selenideOpen();

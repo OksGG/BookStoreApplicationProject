@@ -64,7 +64,6 @@ public class BooksPage extends BasePage {
     }
 
     public void loginCheck() {
-        Allure.addAttachment("Console log: ", "test");
         String text = driver.findElement(By.xpath("//*[@id=\"login\"]")).getText();
         log.info(text);
         Assert.assertTrue(text.contains("Login"));
