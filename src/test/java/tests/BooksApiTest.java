@@ -33,7 +33,7 @@ public class BooksApiTest {
             "  \"userId\": \"e2d6c1df-d38f-4b68-b0aa-fecc503dd4f4\"\n" +
             "}";
 
-    String isbn ="?ISBN=9781449337711";
+    String isbn = "?ISBN=9781449337711";
 
     @Given("Open url")
     public void openUrl() {
@@ -46,9 +46,10 @@ public class BooksApiTest {
 
     @When("Response")
     public void responseStart() {
-       responseBody = response.asString();
+        responseBody = response.asString();
         log.info(responseBody);
     }
+
     @Then("Assert")
     public void checkAssert() {
         JsonPath path = new JsonPath(responseBody);
@@ -67,18 +68,20 @@ public class BooksApiTest {
                 .then()
                 .statusCode(201);
     }
-@When("Open profile")
-public void checkBookInProfile(){
-    RestAssured.given().when()
-            .get(urlSingleBook+isbn)
-            .then()
-            .body("isbn",equalTo("9781449337711"));
-}
+
+    @When("Open profile")
+    public void checkBookInProfile() {
+        RestAssured.given().when()
+                .get(urlSingleBook + isbn)
+                .then()
+                .body("isbn", equalTo("9781449337711"));
+    }
+
     @Then("Delete book")
     public void deleteApiBook() {
         RestAssured.given().auth().preemptive().basic("Test1", "Test_123%")
                 .body(jsonBodyDel)
-               .contentType(ContentType.JSON)
+                .contentType(ContentType.JSON)
                 .when()
                 .delete(urlSingleBook)
                 .then()

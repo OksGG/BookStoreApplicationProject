@@ -1,5 +1,6 @@
 package page;
 
+import io.qameta.allure.Allure;
 import lombok.extern.java.Log;
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
@@ -59,12 +60,11 @@ public class BooksPage extends BasePage {
         login.click();
         user.sendKeys("Linet");
         password.sendKeys("Test_123%");
-        screenshot();
         executor(click);
-        screenshot();
     }
 
     public void loginCheck() {
+        Allure.addAttachment("Console log: ", "test");
         String text = driver.findElement(By.xpath("//*[@id=\"login\"]")).getText();
         log.info(text);
         Assert.assertTrue(text.contains("Login"));
@@ -78,7 +78,6 @@ public class BooksPage extends BasePage {
 
     public void checkListBooks() {
         listTitle = getListOfTitle();
-        screenshot();
         log.info(String.valueOf(listTitle));
         assertThat(String.valueOf(listTitle)).isEqualTo(String.valueOf(title));
     }
@@ -92,25 +91,20 @@ public class BooksPage extends BasePage {
 
     public void addBook() {
         executor(chooseBook);
-        screenshot();
         executor(addBook);
-        screenshot();
         accept();
         executor(goToProfile);
-        screenshot();
         String bookText = driver.findElement(By.className("mr-2")).getText();
         log.info(bookText);
-        screenshot();
         assertThat(bookText.equals("Git Pocket Guide"));
     }
 
     public void deleteBook() {
         clickDelete = new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(clickDelete));
         clickDelete.click();
-       executor(clickOk);
+        executor(clickOk);
         log.info("Ок нажата");
         accept();
-        screenshot();
         String title = driver.findElement(By.className("rt-noData")).getText();
         log.info(title);
         assertThat(title.equals("No rows found"));

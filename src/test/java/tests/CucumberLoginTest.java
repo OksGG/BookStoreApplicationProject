@@ -22,12 +22,12 @@ public class CucumberLoginTest extends LoginPage {
 
     @When("Data input correct")
     public void login() {
-        loginPage.inputCorrect();
+        loginPage.input("Test1", "Test_123%");
     }
 
     @When("Data input incorrect")
     public void loginError() {
-        loginPage.inputError();
+        loginPage.input("Test1", "Test_1");
     }
 
     @Then("Get success")
@@ -35,14 +35,18 @@ public class CucumberLoginTest extends LoginPage {
         loginPage.check();
 
     }
+
     @Then("Get login error")
     public void getLoginError() {
         loginPage.checkError();
 
     }
+
     @After
     @And("Browser close")
     public void close() {
         selenideClose();
     }
+
+
 }
